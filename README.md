@@ -1,3 +1,6 @@
+<p align="center">
+  <img width="256" src="https://imgshare.io/images/2020/01/20/react-slideout-logo-512-copy.png">
+</p>
 
 # react-slideout
 
