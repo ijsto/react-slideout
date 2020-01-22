@@ -27,32 +27,34 @@ const SlideOut = props => {
 
   const sidebarStyles = {
     background: 'white',
-    transition: 'all 0.3s',
     height: '100vh',
-    width,
-    transform: isOpen ? 'translateX(0%)' : 'translateX(-100%)',
+    left: '0',
     position: 'fixed',
     top: fromTop,
-    left: '0',
+    transform: isOpen ? 'translateX(0%)' : 'translateX(-100%)',
+    transition: 'all 0.3s',
+    width,
     zIndex: '999'
   };
 
   const closeButtonStyles = {
-    position: 'absolute',
-    top: '10px',
     appearance: 'none',
-    right: '10px'
+    position: 'absolute',
+    right: '10px',
+    top: '10px'
   };
 
   const overlayStyles = {
-    display: isOpen ? 'block' : 'none',
-    position: 'fixed',
-    width: '100vw',
-    height: '100vh',
     background: 'rgba(0, 0, 0, 0.5)',
-    zIndex: '998',
+    display: isOpen ? 'block' : 'none',
+    height: '100vh',
+    left: '0',
     opacity: isOpen ? '1' : '0',
-    transition: 'all 0.5s ease-in-out'
+    position: 'fixed',
+    top: '0',
+    transition: 'all 0.5s ease-in-out',
+    width: '100vw',
+    zIndex: '998'
   };
 
   return (
