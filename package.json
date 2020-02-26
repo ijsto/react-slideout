@@ -1,6 +1,6 @@
 {
   "name": "@ijsto/react-slideout",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Lightweight & Accessible React Slideout Component",
   "main": "index.js",
   "scripts": {
