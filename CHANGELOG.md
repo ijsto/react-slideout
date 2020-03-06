@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [0.0.7] - 2020-03-05
+
+### Added
+- noOverlay // disable overlay, when slideout is open
+- `styled-components` to manage styles
+- keywords to package.json
+
+### Fix
+- width and offsetTop
+
 ## [0.0.6] - 2020-01-21
 
 ### Fix

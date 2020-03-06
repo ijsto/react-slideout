@@ -18,7 +18,14 @@
   },
   "homepage": "https://github.com/ijsto/react-slideout#readme",
   "license": "ISC",
-  
+  "keywords": [
+    "react",
+    "react-component",
+    "drawer",
+    "navigation",
+    "sidebar",
+    "slideout"
+  ],
   "peerDependencies": {
     "react": "^16.6.1",
     "react-dom": "^16.6.3"
@@ -42,5 +49,8 @@
     "prettier": "^1.19.1",
     "react": "^16.6.1",
     "react-dom": "^16.6.3"
+  },
+  "dependencies": {
+    "styled-components": "^5.0.1"
   }
 }

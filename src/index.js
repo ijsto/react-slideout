@@ -1,65 +1,75 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledWrapper = styled.nav`
+  display: block;
+  top: ${({ fromTop }) => fromTop};
+  position: fixed;
+  z-index: 997;
+`;
+const StyledOverlay = styled.nav`
+  background: rgba(0, 0, 0, 0.5);
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  height: 100vh;
+  left: 0;
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  position: fixed;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  width: 100vw;
+  z-index: 998;
+`;
+const StyledSlideOut = styled.nav`
+  background: white;
+  height: 100vh;
+  position: fixed;
+  transition: all 03s;
+  width: ${({ width }) => width};
+  z-index: 999;
+  ${({ left, isOpen, right }) =>
+    left || !right
+      ? `transform: ${isOpen ? 'translateX(0%)' : 'translateX(-100%)'};
+          left: 0`
+      : `transform: ${isOpen ? 'translateX(0%)' : 'translateX(100%)'};
+          right: 0`};
+`;
+const StyledCloseButton = styled.button`
+  appearance: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+`;
 
 const SlideOut = props => {
   const {
     closeComponent,
     header,
     isOpen,
-    onClose,
+    left,
+    noCloseComponent,
+    noOverlay,
     offsetTop,
+    onClose,
     onCloseComponentKeyDown,
     onCloseComponentKeyPress,
     onCloseComponentKeyUp,
     onOverlayKeyPress,
-    noCloseComponent,
+    right,
     shouldCloseOnOverlayClick = true,
     width = '350px'
   } = props;
 
   const fromTop = offsetTop || '64px';
 
-  const wrapperStyles = {
-    display: 'block',
-    position: 'fixed',
-    top: fromTop,
-    zIndex: '997'
-  };
-
-  const sidebarStyles = {
-    background: 'white',
-    height: '100vh',
-    left: '0',
-    position: 'fixed',
-    top: fromTop,
-    transform: isOpen ? 'translateX(0%)' : 'translateX(-100%)',
-    transition: 'all 0.3s',
-    width,
-    zIndex: '999'
-  };
-
-  const closeButtonStyles = {
-    appearance: 'none',
-    position: 'absolute',
-    right: '10px',
-    top: '10px'
-  };
-
-  const overlayStyles = {
-    background: 'rgba(0, 0, 0, 0.5)',
-    display: isOpen ? 'block' : 'none',
-    height: '100vh',
-    left: '0',
-    opacity: isOpen ? '1' : '0',
-    position: 'fixed',
-    top: '0',
-    transition: 'all 0.5s ease-in-out',
-    width: '100vw',
-    zIndex: '998'
-  };
-
   return (
-    <div style={wrapperStyles}>
-      <nav className="slideout-sidebar" style={sidebarStyles}>
+    <StyledWrapper fromTop={fromTop}>
+      <StyledSlideOut
+        width={width}
+        left={left}
+        right={right}
+        isOpen={isOpen}
+        className="slideout-sidebar"
+      >
         {(!noCloseComponent && closeComponent && (
           <div
             onClick={onClose}
@@ -73,32 +83,32 @@ const SlideOut = props => {
           </div>
         )) ||
           (!noCloseComponent && (
-            <button
+            <StyledCloseButton
               id="dismiss"
               className="slideout-button-close"
-              style={closeButtonStyles}
               onClick={onClose}
               type="button"
             >
               CLOSE
-            </button>
+            </StyledCloseButton>
           ))}
 
         {header && <div className="sidebar-header">{header}</div>}
 
         {props.children}
-      </nav>
+      </StyledSlideOut>
 
-      <div
-        aria-label="close-overlay"
-        className="overlay"
-        onClick={shouldCloseOnOverlayClick && onClose}
-        style={overlayStyles}
-        onKeyPress={onOverlayKeyPress}
-        role="button"
-        tabIndex="0"
-      />
-    </div>
+      {!noOverlay && (
+        <StyledOverlay
+          aria-label="close-overlay"
+          className="overlay"
+          onClick={shouldCloseOnOverlayClick && onClose}
+          onKeyPress={onOverlayKeyPress}
+          role="button"
+          tabIndex="0"
+        />
+      )}
+    </StyledWrapper>
   );
 };
 
