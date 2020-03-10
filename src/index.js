@@ -23,7 +23,7 @@ const StyledSlideOut = styled.nav`
   background: white;
   height: 100vh;
   position: fixed;
-  transition: all 03s;
+  transition: all ${({ speed }) => speed || '0.3s'};
   width: ${({ width }) => width};
   z-index: 999;
   ${({ left, isOpen, right }) =>
@@ -56,6 +56,7 @@ const SlideOut = props => {
     onOverlayKeyPress,
     right,
     shouldCloseOnOverlayClick = true,
+    speed,
     width = '350px'
   } = props;
 
@@ -64,11 +65,12 @@ const SlideOut = props => {
   return (
     <StyledWrapper fromTop={fromTop}>
       <StyledSlideOut
-        width={width}
+        className="slideout-sidebar"
+        isOpen={isOpen}
         left={left}
         right={right}
-        isOpen={isOpen}
-        className="slideout-sidebar"
+        speed={speed}
+        width={width}
       >
         {(!noCloseComponent && closeComponent && (
           <div

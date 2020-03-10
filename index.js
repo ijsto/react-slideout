@@ -22,7 +22,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  background: white;\n  height: 100vh;\n  position: fixed;\n  transition: all 03s;\n  width: ", ";\n  z-index: 999;\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: white;\n  height: 100vh;\n  position: fixed;\n  transition: all ", ";\n  width: ", ";\n  z-index: 999;\n  ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -67,12 +67,15 @@ var StyledOverlay = _styledComponents["default"].nav(_templateObject2(), functio
 });
 
 var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), function (_ref4) {
-  var width = _ref4.width;
-  return width;
+  var speed = _ref4.speed;
+  return speed || '0.3s';
 }, function (_ref5) {
-  var left = _ref5.left,
-      isOpen = _ref5.isOpen,
-      right = _ref5.right;
+  var width = _ref5.width;
+  return width;
+}, function (_ref6) {
+  var left = _ref6.left,
+      isOpen = _ref6.isOpen,
+      right = _ref6.right;
   return left || !right ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(-100%)', ";\n          left: 0") : "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(100%)', ";\n          right: 0");
 });
 
@@ -94,17 +97,19 @@ var SlideOut = function SlideOut(props) {
       right = props.right,
       _props$shouldCloseOnO = props.shouldCloseOnOverlayClick,
       shouldCloseOnOverlayClick = _props$shouldCloseOnO === void 0 ? true : _props$shouldCloseOnO,
+      speed = props.speed,
       _props$width = props.width,
       width = _props$width === void 0 ? '350px' : _props$width;
   var fromTop = offsetTop || '64px';
   return _react["default"].createElement(StyledWrapper, {
     fromTop: fromTop
   }, _react["default"].createElement(StyledSlideOut, {
-    width: width,
+    className: "slideout-sidebar",
+    isOpen: isOpen,
     left: left,
     right: right,
-    isOpen: isOpen,
-    className: "slideout-sidebar"
+    speed: speed,
+    width: width
   }, !noCloseComponent && closeComponent && _react["default"].createElement("div", {
     onClick: onClose,
     onKeyDown: onCloseComponentKeyDown,

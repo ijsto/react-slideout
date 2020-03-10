@@ -30,7 +30,7 @@ styles and focusable input elements within the modal content:
 
 ```jsx
 import React, { useState } from 'react';
-import SlideOut from 'react-slideout';
+import SlideOut from '@ijsto/react-slideout';
 
 const MySlideOut = () => {
   const [slideOutIsOpen, setSlideOutIsOpen] = useState(false);
@@ -70,9 +70,10 @@ More examples are coming soon.
 
 The following props are available:
 
+- speed // default: 0.3s controls the speed of the slideout animation
 - closeComponent // custom close button component
-- noCloseComponent // hide/disable default close button
 - isOpen // open state, control should be within parent component, or state store
+- noCloseComponent // hide/disable default close button
 - onClose // close Slideout callback for close button
 - offsetTop // offset sidebar from top, default is 64px
 - onCloseComponentKeyDown // custom keyboard logic for close button
