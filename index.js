@@ -22,7 +22,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  background: white;\n  height: 100vh;\n  position: fixed;\n  transition: all ", ";\n  width: ", ";\n  z-index: 999;\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: white;\n  height: 100vh;\n  ", "\n  position: fixed;\n  transition: all ", ";\n  width: ", ";\n  z-index: 999;\n  ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -32,7 +32,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  background: rgba(0, 0, 0, 0.5);\n  display: ", ";\n  height: 100vh;\n  left: 0;\n  opacity: ", ";\n  position: fixed;\n  top: 0;\n  transition: all 0.5s ease-in-out;\n  width: 100vw;\n  z-index: 998;\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: rgba(\n    ", ",\n    ", "\n  );\n  display: ", ";\n  height: 100vh;\n  left: 0;\n  opacity: ", ";\n  position: fixed;\n  top: 0;\n  transition: all 0.5s ease-in-out;\n  width: 100vw;\n  z-index: 998;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -53,29 +53,51 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
+function hexToRgb(hex) {
+  var result = /^#?([a-fd]{2})([a-fd]{2})([a-fd]{2})$/i.exec(hex);
+
+  if (result) {
+    var r = parseInt(result[1], 16);
+    var g = parseInt(result[2], 16);
+    var b = parseInt(result[3], 16);
+    return "".concat(r, ",").concat(g, ",").concat(b);
+  }
+
+  return null;
+}
+
 var StyledWrapper = _styledComponents["default"].nav(_templateObject(), function (_ref) {
   var fromTop = _ref.fromTop;
   return fromTop;
 });
 
 var StyledOverlay = _styledComponents["default"].nav(_templateObject2(), function (_ref2) {
-  var isOpen = _ref2.isOpen;
-  return isOpen ? 'block' : 'none';
+  var overlayColor = _ref2.overlayColor;
+  return overlayColor ? hexToRgb(overlayColor) : '0,0,0';
 }, function (_ref3) {
-  var isOpen = _ref3.isOpen;
+  var overlayOpacity = _ref3.overlayOpacity;
+  return overlayOpacity || '0.5';
+}, function (_ref4) {
+  var isOpen = _ref4.isOpen;
+  return isOpen ? 'block' : 'none';
+}, function (_ref5) {
+  var isOpen = _ref5.isOpen;
   return isOpen ? '1' : '0';
 });
 
-var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), function (_ref4) {
-  var speed = _ref4.speed;
+var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), function (_ref6) {
+  var padding = _ref6.padding;
+  return padding && "padding: ".concat(padding, ";");
+}, function (_ref7) {
+  var speed = _ref7.speed;
   return speed || '0.3s';
-}, function (_ref5) {
-  var width = _ref5.width;
+}, function (_ref8) {
+  var width = _ref8.width;
   return width;
-}, function (_ref6) {
-  var left = _ref6.left,
-      isOpen = _ref6.isOpen,
-      right = _ref6.right;
+}, function (_ref9) {
+  var left = _ref9.left,
+      isOpen = _ref9.isOpen,
+      right = _ref9.right;
   return left || !right ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(-100%)', ";\n          left: 0") : "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(100%)', ";\n          right: 0");
 });
 
@@ -94,6 +116,9 @@ var SlideOut = function SlideOut(props) {
       onCloseComponentKeyPress = props.onCloseComponentKeyPress,
       onCloseComponentKeyUp = props.onCloseComponentKeyUp,
       onOverlayKeyPress = props.onOverlayKeyPress,
+      overlayColor = props.overlayColor,
+      overlayOpacity = props.overlayOpacity,
+      padding = props.padding,
       right = props.right,
       _props$shouldCloseOnO = props.shouldCloseOnOverlayClick,
       shouldCloseOnOverlayClick = _props$shouldCloseOnO === void 0 ? true : _props$shouldCloseOnO,
@@ -108,6 +133,7 @@ var SlideOut = function SlideOut(props) {
     isOpen: isOpen,
     left: left,
     right: right,
+    padding: padding,
     speed: speed,
     width: width
   }, !noCloseComponent && closeComponent && _react["default"].createElement("div", {
@@ -127,8 +153,11 @@ var SlideOut = function SlideOut(props) {
   }, header), props.children), !noOverlay && _react["default"].createElement(StyledOverlay, {
     "aria-label": "close-overlay",
     className: "overlay",
+    isOpen: isOpen,
     onClick: shouldCloseOnOverlayClick && onClose,
     onKeyPress: onOverlayKeyPress,
+    overlayColor: overlayColor,
+    overlayOpacity: overlayOpacity,
     role: "button",
     tabIndex: "0"
   }));
