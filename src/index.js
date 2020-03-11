@@ -1,6 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+function hexToRgb(hex) {
+  const result = /^#?([a-fd]{2})([a-fd]{2})([a-fd]{2})$/i.exec(hex);
+  if (result) {
+    const r = parseInt(result[1], 16);
+    const g = parseInt(result[2], 16);
+    const b = parseInt(result[3], 16);
+    return `${r},${g},${b}`;
+  }
+  return null;
+}
+
 const StyledWrapper = styled.nav`
   display: block;
   top: ${({ fromTop }) => fromTop};
@@ -8,7 +19,10 @@ const StyledWrapper = styled.nav`
   z-index: 997;
 `;
 const StyledOverlay = styled.nav`
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(
+    ${({ overlayColor }) => (overlayColor ? hexToRgb(overlayColor) : '0,0,0')},
+    ${({ overlayOpacity }) => overlayOpacity || '0.5'}
+  );
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   height: 100vh;
   left: 0;
@@ -22,6 +36,7 @@ const StyledOverlay = styled.nav`
 const StyledSlideOut = styled.nav`
   background: white;
   height: 100vh;
+  ${({ padding }) => padding && `padding: ${padding};`}
   position: fixed;
   transition: all ${({ speed }) => speed || '0.3s'};
   width: ${({ width }) => width};
@@ -54,6 +69,9 @@ const SlideOut = props => {
     onCloseComponentKeyPress,
     onCloseComponentKeyUp,
     onOverlayKeyPress,
+    overlayColor,
+    overlayOpacity,
+    padding,
     right,
     shouldCloseOnOverlayClick = true,
     speed,
@@ -69,6 +87,7 @@ const SlideOut = props => {
         isOpen={isOpen}
         left={left}
         right={right}
+        padding={padding}
         speed={speed}
         width={width}
       >
@@ -104,8 +123,11 @@ const SlideOut = props => {
         <StyledOverlay
           aria-label="close-overlay"
           className="overlay"
+          isOpen={isOpen}
           onClick={shouldCloseOnOverlayClick && onClose}
           onKeyPress={onOverlayKeyPress}
+          overlayColor={overlayColor}
+          overlayOpacity={overlayOpacity}
           role="button"
           tabIndex="0"
         />

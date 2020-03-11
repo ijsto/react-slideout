@@ -70,7 +70,6 @@ More examples are coming soon.
 
 The following props are available:
 
-- speed // default: 0.3s controls the speed of the slideout animation
 - closeComponent // custom close button component
 - isOpen // open state, control should be within parent component, or state store
 - noCloseComponent // hide/disable default close button
@@ -80,7 +79,11 @@ The following props are available:
 - onCloseComponentKeyPress // custom keyboard logic for close button
 - onCloseComponentKeyUp // custom keyboard logic for close button
 - onOverlayKeyPress // add custom logic for keyboard interaction with layout
+- overlayColor // change default color to overlay takes in HEX color code (example: "#ffffff")
+- overlayOpacity // change defauly opacity to overlay
+- padding prop // applied to the inner SlideOut container
 - shouldCloseOnOverlayClick = true // to disable closing the Slideout on overlay click use `shouldCloseOnOverlayClick={false}`
+- speed // default: 0.3s controls the speed of the slideout animation
 - width // provide custom width to the Slideout, default is 350px
 
 ### Styling
