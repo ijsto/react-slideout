@@ -48,8 +48,9 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "prettier": "^1.19.1",
     "react": "^16.6.1",
-    "react-dom": "^16.6.3",
-    "styled-components": "^5.0.1"
+    "react-dom": "^16.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "styled-components": "^5.0.1"
+  }
 }
