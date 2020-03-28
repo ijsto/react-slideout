@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _react = _interopRequireDefault(require("react"));
+
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -125,9 +127,9 @@ var SlideOut = function SlideOut(props) {
       speed = props.speed,
       _props$width = props.width,
       width = _props$width === void 0 ? '350px' : _props$width;
-  return /*#__PURE__*/React.createElement(StyledWrapper, {
+  return /*#__PURE__*/_react["default"].createElement(StyledWrapper, {
     fromTop: offsetTop
-  }, /*#__PURE__*/React.createElement(StyledSlideOut, {
+  }, /*#__PURE__*/_react["default"].createElement(StyledSlideOut, {
     className: "slideout-sidebar",
     fromTop: offsetTop,
     isOpen: isOpen,
@@ -136,21 +138,21 @@ var SlideOut = function SlideOut(props) {
     padding: padding,
     speed: speed,
     width: width
-  }, !noCloseComponent && closeComponent && /*#__PURE__*/React.createElement("div", {
+  }, !noCloseComponent && closeComponent && /*#__PURE__*/_react["default"].createElement("div", {
     onClick: onClose,
     onKeyDown: onCloseComponentKeyDown,
     onKeyUp: onCloseComponentKeyPress,
     onKeyPress: onCloseComponentKeyUp,
     role: "button",
     tabIndex: "0"
-  }, closeComponent) || !noCloseComponent && /*#__PURE__*/React.createElement(StyledCloseButton, {
+  }, closeComponent) || !noCloseComponent && /*#__PURE__*/_react["default"].createElement(StyledCloseButton, {
     id: "dismiss",
     className: "slideout-button-close",
     onClick: onClose,
     type: "button"
-  }, "CLOSE"), header && /*#__PURE__*/React.createElement("div", {
+  }, "CLOSE"), header && /*#__PURE__*/_react["default"].createElement("div", {
     className: "sidebar-header"
-  }, header), props.children), !noOverlay && /*#__PURE__*/React.createElement(StyledOverlay, {
+  }, header), props.children), !noOverlay && /*#__PURE__*/_react["default"].createElement(StyledOverlay, {
     "aria-label": "close-overlay",
     className: "overlay",
     isOpen: isOpen,
