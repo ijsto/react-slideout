@@ -72,7 +72,7 @@ The following propertiess are available:
 | isOpen                    | boolean                                                    | -                     | Controls whether the slideout is visible                                                |
 | noCloseComponent          | boolean                                                    | false                 | Use this to hide close button. You can use parent component to handle state and toggle  |
 | onClose                   | function                                                   | internal state toggle | A function that will close the Slideout                                                 |
-| offsetTop                 | [CSS unit](https://www.w3schools.com/cssref/css_units.asp  | 64px                  | Offset slideout from top. Useful if to account for headers etc.                         |
+| offsetTop                 | [CSS unit](https://www.w3schools.com/cssref/css_units.asp)  | 64px                  | Offset slideout from top. Useful if to account for headers etc.                         |
 | onCloseComponentKeyDown   | function                                                   | -                     | Accessibility handler                                                                   |
 | onCloseComponentKeyPress  | function                                                   | -                     | Accessibility handler                                                                   |
 | onCloseComponentKeyUp     | function                                                   | -                     | Accessibility handler                                                                   |
