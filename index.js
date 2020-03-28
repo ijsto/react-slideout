@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(require("react"));
-
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -95,10 +93,10 @@ var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), functi
   var width = _ref8.width;
   return width;
 }, function (_ref9) {
-  var left = _ref9.left,
-      isOpen = _ref9.isOpen,
-      right = _ref9.right;
-  return left || !right ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(-100%)', ";\n          left: 0") : "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(100%)', ";\n          right: 0");
+  var fromTop = _ref9.fromTop,
+      slideFrom = _ref9.slideFrom,
+      isOpen = _ref9.isOpen;
+  return slideFrom === 'left' ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(-100%)', ";\n          left: 0") : slideFrom === 'right' ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(100%)', ";\n          right: 0") : slideFrom === 'top' ? "transform: ".concat(isOpen ? 'translateY(0%)' : 'translateY(-100%)', ";\n          top: ").concat(fromTop, "; left: 0; bottom:0;right: 0;") : "transform: ".concat(isOpen ? 'translateY(0%)' : 'translateY(100%)', ";\n      top: ").concat(fromTop, "; left: 0; bottom:0;right: 0;");
 });
 
 var StyledCloseButton = _styledComponents["default"].button(_templateObject4());
@@ -110,7 +108,8 @@ var SlideOut = function SlideOut(props) {
       left = props.left,
       noCloseComponent = props.noCloseComponent,
       noOverlay = props.noOverlay,
-      offsetTop = props.offsetTop,
+      _props$offsetTop = props.offsetTop,
+      offsetTop = _props$offsetTop === void 0 ? '64px' : _props$offsetTop,
       onClose = props.onClose,
       onCloseComponentKeyDown = props.onCloseComponentKeyDown,
       onCloseComponentKeyPress = props.onCloseComponentKeyPress,
@@ -119,38 +118,39 @@ var SlideOut = function SlideOut(props) {
       overlayColor = props.overlayColor,
       overlayOpacity = props.overlayOpacity,
       padding = props.padding,
-      right = props.right,
       _props$shouldCloseOnO = props.shouldCloseOnOverlayClick,
       shouldCloseOnOverlayClick = _props$shouldCloseOnO === void 0 ? true : _props$shouldCloseOnO,
+      _props$slideFrom = props.slideFrom,
+      slideFrom = _props$slideFrom === void 0 ? 'left' : _props$slideFrom,
       speed = props.speed,
       _props$width = props.width,
       width = _props$width === void 0 ? '350px' : _props$width;
-  var fromTop = offsetTop || '64px';
-  return _react["default"].createElement(StyledWrapper, {
-    fromTop: fromTop
-  }, _react["default"].createElement(StyledSlideOut, {
+  return /*#__PURE__*/React.createElement(StyledWrapper, {
+    fromTop: offsetTop
+  }, /*#__PURE__*/React.createElement(StyledSlideOut, {
     className: "slideout-sidebar",
+    fromTop: offsetTop,
     isOpen: isOpen,
     left: left,
-    right: right,
+    slideFrom: slideFrom,
     padding: padding,
     speed: speed,
     width: width
-  }, !noCloseComponent && closeComponent && _react["default"].createElement("div", {
+  }, !noCloseComponent && closeComponent && /*#__PURE__*/React.createElement("div", {
     onClick: onClose,
     onKeyDown: onCloseComponentKeyDown,
     onKeyUp: onCloseComponentKeyPress,
     onKeyPress: onCloseComponentKeyUp,
     role: "button",
     tabIndex: "0"
-  }, closeComponent) || !noCloseComponent && _react["default"].createElement(StyledCloseButton, {
+  }, closeComponent) || !noCloseComponent && /*#__PURE__*/React.createElement(StyledCloseButton, {
     id: "dismiss",
     className: "slideout-button-close",
     onClick: onClose,
     type: "button"
-  }, "CLOSE"), header && _react["default"].createElement("div", {
+  }, "CLOSE"), header && /*#__PURE__*/React.createElement("div", {
     className: "sidebar-header"
-  }, header), props.children), !noOverlay && _react["default"].createElement(StyledOverlay, {
+  }, header), props.children), !noOverlay && /*#__PURE__*/React.createElement(StyledOverlay, {
     "aria-label": "close-overlay",
     className: "overlay",
     isOpen: isOpen,

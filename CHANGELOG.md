@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.10] - 2020-03-28
 
+### Added
+
+- `slideFrom` // prop - Determines the location from where slideout will appear
+
 ### Update
 
 - API README docs related to available props
+
+### Removed
+
+- `right` prop in favour of `slideFrom`
 
 ## [0.0.9] - 2020-03-11
 

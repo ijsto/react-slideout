@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 function hexToRgb(hex) {
@@ -41,12 +40,18 @@ const StyledSlideOut = styled.nav`
   transition: all ${({ speed }) => speed || '0.3s'};
   width: ${({ width }) => width};
   z-index: 999;
-  ${({ left, isOpen, right }) =>
-    left || !right
+  ${({ fromTop, slideFrom, isOpen }) =>
+    slideFrom === 'left'
       ? `transform: ${isOpen ? 'translateX(0%)' : 'translateX(-100%)'};
           left: 0`
-      : `transform: ${isOpen ? 'translateX(0%)' : 'translateX(100%)'};
-          right: 0`};
+      : slideFrom === 'right'
+      ? `transform: ${isOpen ? 'translateX(0%)' : 'translateX(100%)'};
+          right: 0`
+      : slideFrom === 'top'
+      ? `transform: ${isOpen ? 'translateY(0%)' : 'translateY(-100%)'};
+          top: ${fromTop}; left: 0; bottom:0;right: 0;`
+      : `transform: ${isOpen ? 'translateY(0%)' : 'translateY(100%)'};
+      top: ${fromTop}; left: 0; bottom:0;right: 0;`};
 `;
 const StyledCloseButton = styled.button`
   appearance: none;
@@ -63,7 +68,7 @@ const SlideOut = props => {
     left,
     noCloseComponent,
     noOverlay,
-    offsetTop,
+    offsetTop = '64px',
     onClose,
     onCloseComponentKeyDown,
     onCloseComponentKeyPress,
@@ -72,21 +77,20 @@ const SlideOut = props => {
     overlayColor,
     overlayOpacity,
     padding,
-    right,
     shouldCloseOnOverlayClick = true,
+    slideFrom = 'left',
     speed,
     width = '350px'
   } = props;
 
-  const fromTop = offsetTop || '64px';
-
   return (
-    <StyledWrapper fromTop={fromTop}>
+    <StyledWrapper fromTop={offsetTop}>
       <StyledSlideOut
         className="slideout-sidebar"
+        fromTop={offsetTop}
         isOpen={isOpen}
         left={left}
-        right={right}
+        slideFrom={slideFrom}
         padding={padding}
         speed={speed}
         width={width}

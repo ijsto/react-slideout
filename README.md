@@ -81,7 +81,8 @@ The following propertiess are available:
 | overlayOpacity            | integer from 0 to 1                                        | 0.5                   | Changes default opacity of the overlay                                                  |
 | padding                   | [CSS unit](https://www.w3schools.com/cssref/css_units.asp) | -                     | Applied to the inner SlideOut container                                                 |
 | shouldCloseOnOverlayClick | boolean                                                    | true                  | To disable closing, when user clicks on overlay set `shouldCloseOnOverlayClick={false}` |
-| speed                     | integer                                                    | 0.3s                  | controls the speed of the slideout animation                                            |
+| speed                     | integer                                                    | 0.3s                  | Controls the speed of the slideout animation                                            |
+| slideFrom                 | string                                                     | left                  | Determines the location from where slideout will appear                                 |
 | width                     | [CSS unit](https://www.w3schools.com/cssref/css_units.asp) | 350px                 | Custom width of the the Slideout                                                        |
 
 ### Styling
