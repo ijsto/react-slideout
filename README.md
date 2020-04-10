@@ -83,6 +83,7 @@ The following propertiess are available:
 | shouldCloseOnOverlayClick | boolean                                                    | true                  | To disable closing, when user clicks on overlay set `shouldCloseOnOverlayClick={false}` |
 | speed                     | integer                                                    | 0.3s                  | Controls the speed of the slideout animation                                            |
 | slideFrom                 | string                                                     | left                  | Determines the location from where slideout will appear                                 |
+| style                     | object                                                     | -                     | Passes CSS style object to Slideout wrapper                                             |
 | width                     | [CSS unit](https://www.w3schools.com/cssref/css_units.asp) | 350px                 | Custom width of the the Slideout                                                        |
 
 ### Styling
