@@ -32,7 +32,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  background: rgba(\n    ", ",\n    ", "\n  );\n  display: ", ";\n  height: 100vh;\n  left: 0;\n  opacity: ", ";\n  position: fixed;\n  top: 0;\n  transition: all 0.5s ease-in-out;\n  width: 100vw;\n  z-index: 998;\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: rgba(\n    ", ",\n    ", "\n  );\n  display: ", ";\n  height: 100vh;\n  left: 0;\n  opacity: ", ";\n  position: fixed;\n  top: ", ";\n  transition: all 0.5s ease-in-out;\n  width: 100vw;\n  z-index: 998;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -52,6 +52,22 @@ function _templateObject() {
 }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function a11yClick(event, action) {
+  if (event.type === 'click') {
+    action();
+    return true;
+  }
+
+  var code = event.charCode || event.keyCode;
+
+  if (code === 32 || code === 13) {
+    action();
+    return true;
+  }
+
+  return false;
+}
 
 function hexToRgb(hex) {
   var result = /^#?([a-fd]{2})([a-fd]{2})([a-fd]{2})$/i.exec(hex);
@@ -83,21 +99,24 @@ var StyledOverlay = _styledComponents["default"].nav(_templateObject2(), functio
 }, function (_ref5) {
   var isOpen = _ref5.isOpen;
   return isOpen ? '1' : '0';
+}, function (_ref6) {
+  var fromTop = _ref6.fromTop;
+  return fromTop;
 });
 
-var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), function (_ref6) {
-  var padding = _ref6.padding;
+var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), function (_ref7) {
+  var padding = _ref7.padding;
   return padding && "padding: ".concat(padding, ";");
-}, function (_ref7) {
-  var speed = _ref7.speed;
-  return speed || '0.3s';
 }, function (_ref8) {
-  var width = _ref8.width;
-  return width;
+  var speed = _ref8.speed;
+  return speed || '0.3s';
 }, function (_ref9) {
-  var fromTop = _ref9.fromTop,
-      slideFrom = _ref9.slideFrom,
-      isOpen = _ref9.isOpen;
+  var width = _ref9.width;
+  return width;
+}, function (_ref10) {
+  var fromTop = _ref10.fromTop,
+      slideFrom = _ref10.slideFrom,
+      isOpen = _ref10.isOpen;
   return slideFrom === 'left' ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(-100%)', ";\n          left: 0") : slideFrom === 'right' ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(100%)', ";\n          right: 0") : slideFrom === 'top' ? "transform: ".concat(isOpen ? 'translateY(0%)' : 'translateY(-100%)', ";\n          top: ").concat(fromTop, "; left: 0; bottom:0;right: 0;") : "transform: ".concat(isOpen ? 'translateY(0%)' : 'translateY(100%)', ";\n      top: ").concat(fromTop, "; left: 0; bottom:0;right: 0;");
 });
 
@@ -125,10 +144,12 @@ var SlideOut = function SlideOut(props) {
       _props$slideFrom = props.slideFrom,
       slideFrom = _props$slideFrom === void 0 ? 'left' : _props$slideFrom,
       speed = props.speed,
+      style = props.style,
       _props$width = props.width,
       width = _props$width === void 0 ? '350px' : _props$width;
   return /*#__PURE__*/_react["default"].createElement(StyledWrapper, {
-    fromTop: offsetTop
+    fromTop: offsetTop,
+    tabIndex: "-1"
   }, /*#__PURE__*/_react["default"].createElement(StyledSlideOut, {
     className: "slideout-sidebar",
     fromTop: offsetTop,
@@ -137,6 +158,7 @@ var SlideOut = function SlideOut(props) {
     slideFrom: slideFrom,
     padding: padding,
     speed: speed,
+    style: style,
     width: width
   }, !noCloseComponent && closeComponent && /*#__PURE__*/_react["default"].createElement("div", {
     onClick: onClose,
@@ -144,11 +166,14 @@ var SlideOut = function SlideOut(props) {
     onKeyUp: onCloseComponentKeyPress,
     onKeyPress: onCloseComponentKeyUp,
     role: "button",
-    tabIndex: "0"
+    tabIndex: isOpen ? '0' : '-1'
   }, closeComponent) || !noCloseComponent && /*#__PURE__*/_react["default"].createElement(StyledCloseButton, {
     id: "dismiss",
     className: "slideout-button-close",
     onClick: onClose,
+    onKeyDown: function onKeyDown(e) {
+      a11yClick(e, onClose);
+    },
     type: "button"
   }, "CLOSE"), header && /*#__PURE__*/_react["default"].createElement("div", {
     className: "sidebar-header"
@@ -156,12 +181,13 @@ var SlideOut = function SlideOut(props) {
     "aria-label": "close-overlay",
     className: "overlay",
     isOpen: isOpen,
+    fromTop: offsetTop,
     onClick: shouldCloseOnOverlayClick && onClose,
     onKeyPress: onOverlayKeyPress,
     overlayColor: overlayColor,
     overlayOpacity: overlayOpacity,
     role: "button",
-    tabIndex: "0"
+    tabIndex: isOpen ? '0' : '-1'
   }));
 };
 
