@@ -1,6 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
+function a11yClick(event, action) {
+  if (event.type === 'click') {
+    action();
+    return true;
+  }
+
+  const code = event.charCode || event.keyCode;
+  if (code === 32 || code === 13) {
+    action();
+    return true;
+  }
+
+  return false;
+}
+
 function hexToRgb(hex) {
   const result = /^#?([a-fd]{2})([a-fd]{2})([a-fd]{2})$/i.exec(hex);
   if (result) {
@@ -28,7 +43,7 @@ const StyledOverlay = styled.nav`
   left: 0;
   opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
   position: fixed;
-  top: 0;
+  top: ${({ fromTop }) => fromTop};
   transition: all 0.5s ease-in-out;
   width: 100vw;
   z-index: 998;
@@ -81,11 +96,12 @@ const SlideOut = props => {
     shouldCloseOnOverlayClick = true,
     slideFrom = 'left',
     speed,
+    style,
     width = '350px'
   } = props;
 
   return (
-    <StyledWrapper fromTop={offsetTop}>
+    <StyledWrapper fromTop={offsetTop} tabIndex="-1">
       <StyledSlideOut
         className="slideout-sidebar"
         fromTop={offsetTop}
@@ -94,6 +110,7 @@ const SlideOut = props => {
         slideFrom={slideFrom}
         padding={padding}
         speed={speed}
+        style={style}
         width={width}
       >
         {(!noCloseComponent && closeComponent && (
@@ -103,7 +120,7 @@ const SlideOut = props => {
             onKeyUp={onCloseComponentKeyPress}
             onKeyPress={onCloseComponentKeyUp}
             role="button"
-            tabIndex="0"
+            tabIndex={isOpen ? '0' : '-1'}
           >
             {closeComponent}
           </div>
@@ -113,6 +130,9 @@ const SlideOut = props => {
               id="dismiss"
               className="slideout-button-close"
               onClick={onClose}
+              onKeyDown={e => {
+                a11yClick(e, onClose);
+              }}
               type="button"
             >
               CLOSE
@@ -129,12 +149,13 @@ const SlideOut = props => {
           aria-label="close-overlay"
           className="overlay"
           isOpen={isOpen}
+          fromTop={offsetTop}
           onClick={shouldCloseOnOverlayClick && onClose}
           onKeyPress={onOverlayKeyPress}
           overlayColor={overlayColor}
           overlayOpacity={overlayOpacity}
           role="button"
-          tabIndex="0"
+          tabIndex={isOpen ? '0' : '-1'}
         />
       )}
     </StyledWrapper>
