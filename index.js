@@ -22,7 +22,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  background: white;\n  height: 100vh;\n  ", "\n  position: fixed;\n  transition: all ", ";\n  width: ", ";\n  z-index: 999;\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: white;\n  height: 100vh;\n  ", "\n  overflow-y: auto;\n  position: fixed;\n  transition: all ", ";\n  width: ", ";\n  z-index: 999;\n  ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
