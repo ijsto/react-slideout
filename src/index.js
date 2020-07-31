@@ -52,6 +52,7 @@ const StyledSlideOut = styled.nav`
   background: white;
   height: 100vh;
   ${({ padding }) => padding && `padding: ${padding};`}
+  overflow-y: auto;
   position: fixed;
   transition: all ${({ speed }) => speed || '0.3s'};
   width: ${({ width }) => width};
