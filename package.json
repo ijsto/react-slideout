@@ -1,6 +1,6 @@
 {
   "name": "@ijsto/react-slideout",
-  "version": "0.0.15",
+  "version": "0.1.1",
   "description": "Lightweight & Accessible React Slideout Component",
   "main": "index.js",
   "scripts": {
@@ -51,6 +51,7 @@
     "react-dom": "^16.6.3"
   },
   "dependencies": {
+    "@ijsto/eslint-config": "^3.0.1",
     "styled-components": "^5.0.1"
   }
 }
