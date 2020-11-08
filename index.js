@@ -82,12 +82,12 @@ function hexToRgb(hex) {
   return null;
 }
 
-var StyledWrapper = _styledComponents["default"].nav(_templateObject(), function (_ref) {
+var StyledWrapper = _styledComponents["default"].div(_templateObject(), function (_ref) {
   var fromTop = _ref.fromTop;
   return fromTop;
 });
 
-var StyledOverlay = _styledComponents["default"].nav(_templateObject2(), function (_ref2) {
+var StyledOverlay = _styledComponents["default"].div(_templateObject2(), function (_ref2) {
   var overlayColor = _ref2.overlayColor;
   return overlayColor ? hexToRgb(overlayColor) : '0,0,0';
 }, function (_ref3) {
@@ -104,7 +104,7 @@ var StyledOverlay = _styledComponents["default"].nav(_templateObject2(), functio
   return fromTop;
 });
 
-var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), function (_ref7) {
+var StyledSlideOut = _styledComponents["default"].div(_templateObject3(), function (_ref7) {
   var padding = _ref7.padding;
   return padding && "padding: ".concat(padding, ";");
 }, function (_ref8) {
@@ -122,7 +122,7 @@ var StyledSlideOut = _styledComponents["default"].nav(_templateObject3(), functi
 
 var StyledCloseButton = _styledComponents["default"].button(_templateObject4());
 
-var SlideOut = function SlideOut(props) {
+var SlideOut = function SlideOut(props, ref) {
   var closeComponent = props.closeComponent,
       header = props.header,
       isOpen = props.isOpen,
@@ -157,6 +157,7 @@ var SlideOut = function SlideOut(props) {
     left: left,
     slideFrom: slideFrom,
     padding: padding,
+    ref: ref,
     speed: speed,
     style: style,
     width: width

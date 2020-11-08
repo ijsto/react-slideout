@@ -27,13 +27,13 @@ function hexToRgb(hex) {
   return null;
 }
 
-const StyledWrapper = styled.nav`
+const StyledWrapper = styled.div`
   display: block;
   top: ${({ fromTop }) => fromTop};
   position: fixed;
   z-index: 997;
 `;
-const StyledOverlay = styled.nav`
+const StyledOverlay = styled.div`
   background: rgba(
     ${({ overlayColor }) => (overlayColor ? hexToRgb(overlayColor) : '0,0,0')},
     ${({ overlayOpacity }) => overlayOpacity || '0.5'}
@@ -48,7 +48,8 @@ const StyledOverlay = styled.nav`
   width: 100vw;
   z-index: 998;
 `;
-const StyledSlideOut = styled.nav`
+
+const StyledSlideOut = styled.div`
   background: white;
   height: 100vh;
   ${({ padding }) => padding && `padding: ${padding};`}
@@ -77,7 +78,7 @@ const StyledCloseButton = styled.button`
   top: 10px;
 `;
 
-const SlideOut = props => {
+const SlideOut = (props, ref) => {
   const {
     closeComponent,
     header,
@@ -98,7 +99,7 @@ const SlideOut = props => {
     slideFrom = 'left',
     speed,
     style,
-    width = '350px'
+    width = '350px',
   } = props;
 
   return (
@@ -110,6 +111,7 @@ const SlideOut = props => {
         left={left}
         slideFrom={slideFrom}
         padding={padding}
+        ref={ref}
         speed={speed}
         style={style}
         width={width}
