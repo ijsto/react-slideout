@@ -2,11 +2,15 @@
   <img width="256" src="https://raw.githubusercontent.com/ijsto/react-slideout/master/assets/img/react-slideout-logo-512.png">
 </p>
 
-# react-slideout
+<hr />
+
+# **react-slideout**
 
 Accessible SlideOut component for React.JS
 
-## 📖 Table of Contents
+<hr />
+
+## **📖 Table of Contents**
 
 - [Installation](#-installation)
 - [Examples](#-how-to-use)
@@ -17,13 +21,21 @@ Accessible SlideOut component for React.JS
 - [Roadmap](#%EF%B8%8F-roadmap)
 - [Contribution](#%EF%B8%8F-contributions)
 
-## 📦 Installation
+<hr />
+
+## **📦 Installation**
 
 To install, you can use [npm](https://npmjs.org/):
 
     $ npm install @ijsto/react-slideout
 
-## 🔨 How to Use
+or [yarn](https://yarnpkg.com/):
+
+    $ yarn add @ijsto/react-slideout
+
+<hr />
+
+## **🔨 How to Use**
 
 Here is a simple example of react-modal being used in an app with some custom
 styles and focusable input elements within the modal content:
@@ -59,54 +71,82 @@ const MySlideOut = () => {
 
 More examples are coming soon.
 
-## 📜 API documentation
+<hr />
 
-### Props
+## **📜 API documentation**
+
+<hr/>
+
+### **Props**
 
 The following propertiess are available:
 
-| Property name             | Type                                                       | Default               | Description                                                                             |
-| ------------------------- | ---------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------- |
-| children                  | A React component                                          | -                     | Any React component - this will appear in the slideout                                  |
-| closeComponent            | React Component                                            | -                     | Custom close button component                                                           |
-| isOpen                    | boolean                                                    | -                     | Controls whether the slideout is visible                                                |
-| noCloseComponent          | boolean                                                    | false                 | Use this to hide close button. You can use parent component to handle state and toggle  |
-| onClose                   | function                                                   | internal state toggle | A function that will close the Slideout                                                 |
-| offsetTop                 | [CSS unit](https://www.w3schools.com/cssref/css_units.asp) | 64px                  | Offset slideout from top. Useful if to account for headers etc.                         |
-| onCloseComponentKeyDown   | function                                                   | -                     | Accessibility handler                                                                   |
-| onCloseComponentKeyPress  | function                                                   | -                     | Accessibility handler                                                                   |
-| onCloseComponentKeyUp     | function                                                   | -                     | Accessibility handler                                                                   |
-| onOverlayKeyPress         | function                                                   | -                     | Accessibility handler                                                                   |
-| overlayColor              | HEX Color code                                             | #000000 (black)       | Changes overlay color must be in HEX format (example: "#ffffff")                        |
-| overlayOpacity            | integer from 0 to 1                                        | 0.5                   | Changes default opacity of the overlay                                                  |
-| padding                   | [CSS unit](https://www.w3schools.com/cssref/css_units.asp) | -                     | Applied to the inner SlideOut container                                                 |
-| shouldCloseOnOverlayClick | boolean                                                    | true                  | To disable closing, when user clicks on overlay set `shouldCloseOnOverlayClick={false}` |
-| speed                     | integer                                                    | 0.3s                  | Controls the speed of the slideout animation                                            |
-| slideFrom                 | string                                                     | left                  | Determines the location from where slideout will appear                                 |
-| style                     | object                                                     | -                     | Passes CSS style object to Slideout wrapper                                             |
-| width                     | [CSS unit](https://www.w3schools.com/cssref/css_units.asp) | 350px                 | Custom width of the the Slideout                                                        |
+| Property name             | Type                                                               | Default               | Description                                                                             |
+| ------------------------- | ------------------------------------------------------------------ | --------------------- | --------------------------------------------------------------------------------------- |
+| bg                        | [CSS Color](https://www.w3schools.com/cssref/css_colors_legal.asp) | `"white"`             | Any legal CSS color value component                                                     |
+| children                  | A React component                                                  | -                     | Any React component - this will appear in the slideout                                  |
+| classNamePrefix           | string                                                             | -                     | Namespace - will be applied to all SlideOut components                                  |
+| closeComponent            | React Component or html element                                    | -                     | Custom close button component                                                           |
+| hideClose                 | boolean                                                            | `false`               | Use this to hide close button. You can use parent component to handle state and toggle  |
+| isOpen                    | boolean                                                            | -                     | Controls whether the slideout is visible                                                |
+| offsetTop                 | [CSS Unit](https://www.w3schools.com/cssref/css_units.asp)         | `0`                   | Offset slideout from top. Useful to account for the header height.                      |
+| onClose                   | function                                                           | internal state toggle | A function that will close the Slideout                                                 |
+| onCloseComponentKeyDown   | function                                                           | -                     | Accessibility handler                                                                   |
+| onCloseComponentKeyPress  | function                                                           | -                     | Accessibility handler                                                                   |
+| onCloseComponentKeyUp     | function                                                           | -                     | Accessibility handler                                                                   |
+| onOverlayKeyPress         | function                                                           | -                     | Accessibility handler                                                                   |
+| overlayColor              | HEX Color code                                                     | `"#000000"` (black)   | Changes overlay color must be in HEX format (example: "#ffffff")                        |
+| overlayOpacity            | integer from 0 to 1                                                | `0.5`                 | Changes default opacity of the overlay                                                  |
+| padding                   | [CSS unit](https://www.w3schools.com/cssref/css_units.asp)         | -                     | Applied to the inner SlideOut container                                                 |
+| shouldCloseOnOverlayClick | boolean                                                            | `true`                | To disable closing, when user clicks on overlay set `shouldCloseOnOverlayClick={false}` |
+| slideFrom                 | string                                                             | `"left"`              | Determines the location from where slideout will appear                                 |
+| speed                     | integer                                                            | `0.3s`                | Controls the speed of the slideout animation                                            |
+| width                     | [CSS unit](https://www.w3schools.com/cssref/css_units.asp)         | `350px`               | Custom width of the the Slideout                                                        |
+| zIndexIncrement           | integer                                                            | `0`                   | Increments all zIndexes by the provided value. See default zIndexes below.              |
 
-### Styling
+<hr/>
 
-Currently you can apply CSS styles by modifying the CSS classNames.
-The following classes are currently available:
+### **Stacking (zIndexes)**
 
-- slideout-sidebar // sidebar itself
-- slideout-button-close // styles default close button (you can also use `closeComponent`prop to supply custom component)
-- sidebar-header // if you provide a component via `header` props you can use this class to style its wrapper
+By default Slideout components have the following zIndexes:
+
+Here are the available `className`s:
+
+- wrapper // 7
+- close-overlay // 8
+- body // 9
+
+<hr/>
+
+### **Styling**
+
+We provide more fine-grained control over all React-Slideout components via CSS class names.
+
+Here are the available `className`s:
+
+- wrapper // the top-level Slideout component
+- body // the Slideout component content
+- close-button //
+- close-component // wrapper that wrapper your custom close component
 - close-overlay // style overlay `background`, `opacity`, `z-index` etc.
 
-## 🎬 Demos
+<hr />
+
+## **🎬 Demos**
 
 Coming soon.
 
-## 🗺️ Roadmap
+<hr />
+
+## **🗺️ Roadmap**
 
 - Add entry from other sides
 - Add focus management system
 - Improve accessibility
 
-## 🙆‍♂️ Contributions
+<hr />
+
+## **🙆‍♂️ Contributions**
 
 Please feel free to submit PRs for the above (Roadmap) goals or otherwise
 
