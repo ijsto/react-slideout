@@ -31,7 +31,7 @@ const StyledWrapper = styled.div`
   display: block;
   top: ${({ fromTop }) => fromTop};
   position: fixed;
-  z-index: 997;
+  z-index: ${({ zIncrement }) => zIncrement + 7};
 `;
 const StyledOverlay = styled.div`
   background: rgba(
@@ -46,18 +46,18 @@ const StyledOverlay = styled.div`
   top: ${({ fromTop }) => fromTop};
   transition: all 0.5s ease-in-out;
   width: 100vw;
-  z-index: 998;
+  z-index: ${({ zIncrement }) => zIncrement + 8};
 `;
 
 const StyledSlideOut = styled.div`
-  background: white;
+  background: ${({ bg }) => bg};
   height: 100vh;
   ${({ padding }) => padding && `padding: ${padding};`}
   overflow-y: auto;
   position: fixed;
   transition: all ${({ speed }) => speed || '0.3s'};
   width: ${({ width }) => width};
-  z-index: 999;
+  z-index: ${({ zIncrement }) => zIncrement + 9};
   ${({ fromTop, slideFrom, isOpen }) =>
     slideFrom === 'left'
       ? `transform: ${isOpen ? 'translateX(0%)' : 'translateX(-100%)'};
@@ -78,13 +78,14 @@ const StyledCloseButton = styled.button`
   top: 10px;
 `;
 
-const SlideOut = (props, ref) => {
+const SlideOut = props => {
   const {
+    bg,
+    classNamePrefix,
     closeComponent,
-    header,
+    closeLabel,
+    hideClose,
     isOpen,
-    left,
-    noCloseComponent,
     noOverlay,
     offsetTop = '64px',
     onClose,
@@ -98,26 +99,33 @@ const SlideOut = (props, ref) => {
     shouldCloseOnOverlayClick = true,
     slideFrom = 'left',
     speed,
-    style,
     width = '350px',
+    zIncrement = 0,
   } = props;
 
   return (
-    <StyledWrapper fromTop={offsetTop} tabIndex="-1">
+    <StyledWrapper
+      className={`${classNamePrefix ? `${classNamePrefix}-` : ''}wrapper`}
+      fromTop={offsetTop}
+      tabIndex="-1"
+      zIncrement={zIncrement}
+    >
       <StyledSlideOut
-        className="slideout-sidebar"
+        bg={bg}
+        className={`${classNamePrefix ? `${classNamePrefix}-` : ''}body`}
         fromTop={offsetTop}
         isOpen={isOpen}
-        left={left}
         slideFrom={slideFrom}
         padding={padding}
-        ref={ref}
         speed={speed}
-        style={style}
         width={width}
+        zIncrement={zIncrement}
       >
-        {(!noCloseComponent && closeComponent && (
+        {(!hideClose && closeComponent && (
           <div
+            className={`${
+              classNamePrefix ? `${classNamePrefix}-` : ''
+            }close-component`}
             onClick={onClose}
             onKeyDown={onCloseComponentKeyDown}
             onKeyUp={onCloseComponentKeyPress}
@@ -128,29 +136,30 @@ const SlideOut = (props, ref) => {
             {closeComponent}
           </div>
         )) ||
-          (!noCloseComponent && (
+          (!hideClose && (
             <StyledCloseButton
               id="dismiss"
-              className="slideout-button-close"
+              className={`${
+                classNamePrefix ? `${classNamePrefix}-` : ''
+              }close-button`}
               onClick={onClose}
               onKeyDown={e => {
                 a11yClick(e, onClose);
               }}
               type="button"
             >
-              CLOSE
+              {closeLabel || 'Close Sidebar'}
             </StyledCloseButton>
           ))}
-
-        {header && <div className="sidebar-header">{header}</div>}
 
         {props.children}
       </StyledSlideOut>
 
       {!noOverlay && (
         <StyledOverlay
-          aria-label="close-overlay"
-          className="overlay"
+          className={`${
+            classNamePrefix ? `${classNamePrefix}-` : ''
+          }close-overlay`}
           isOpen={isOpen}
           fromTop={offsetTop}
           onClick={shouldCloseOnOverlayClick && onClose}
@@ -159,6 +168,7 @@ const SlideOut = (props, ref) => {
           overlayOpacity={overlayOpacity}
           role="button"
           tabIndex={isOpen ? '0' : '-1'}
+          zIncrement={zIncrement}
         />
       )}
     </StyledWrapper>
