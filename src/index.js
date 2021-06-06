@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 function a11yClick(event, action) {
@@ -93,6 +93,7 @@ const SlideOut = props => {
     onCloseComponentKeyPress,
     onCloseComponentKeyUp,
     onOverlayKeyPress,
+    overflowShouldLock,
     overlayColor,
     overlayOpacity,
     padding,
@@ -102,6 +103,15 @@ const SlideOut = props => {
     width = '350px',
     zIncrement = 0,
   } = props;
+
+  useEffect(() => {
+    if (overflowShouldLock && isOpen) document.body.style.overflowY = 'hidden';
+    return () => {
+      if (overflowShouldLock && !isOpen)
+        document.body.style.overflowY = 'hidden';
+      document.body.style.overflowY = 'auto';
+    };
+  }, [isOpen, overflowShouldLock]);
 
   return (
     <StyledWrapper
@@ -173,6 +183,10 @@ const SlideOut = props => {
       )}
     </StyledWrapper>
   );
+};
+
+SlideOut.defaultProps = {
+  overflowShouldLock: true,
 };
 
 export default SlideOut;
