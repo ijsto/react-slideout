@@ -95,6 +95,7 @@ The following propertiess are available:
 | onCloseComponentKeyPress  | function                                                           | -                     | Accessibility handler                                                                   |
 | onCloseComponentKeyUp     | function                                                           | -                     | Accessibility handler                                                                   |
 | onOverlayKeyPress         | function                                                           | -                     | Accessibility handler                                                                   |
+| overflowShouldLock        | Boolean                                                            | `true`                | Locks the document body `overflow-y`                                                    |
 | overlayColor              | HEX Color code                                                     | `"#000000"` (black)   | Changes overlay color must be in HEX format (example: "#ffffff")                        |
 | overlayOpacity            | integer from 0 to 1                                                | `0.5`                 | Changes default opacity of the overlay                                                  |
 | padding                   | [CSS unit](https://www.w3schools.com/cssref/css_units.asp)         | -                     | Applied to the inner SlideOut container                                                 |
