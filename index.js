@@ -78,25 +78,28 @@ var StyledOverlay = _styledComponents["default"].div(_templateObject2 || (_templ
   return zIncrement + 8;
 });
 
-var StyledSlideOut = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background: ", ";\n  height: 100vh;\n  ", "\n  overflow-y: auto;\n  position: fixed;\n  transition: all ", ";\n  width: ", ";\n  z-index: ", ";\n  ", ";\n"])), function (_ref9) {
+var StyledSlideOut = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background: ", ";\n  height: 100vh;\n  max-width: ", ";\n  ", "\n  overflow-y: auto;\n  position: fixed;\n  transition: all ", ";\n  width: ", ";\n  z-index: ", ";\n  ", ";\n"])), function (_ref9) {
   var bg = _ref9.bg;
   return bg;
 }, function (_ref10) {
-  var padding = _ref10.padding;
-  return padding && "padding: ".concat(padding, ";");
+  var maxWidth = _ref10.maxWidth;
+  return maxWidth;
 }, function (_ref11) {
-  var speed = _ref11.speed;
-  return speed || '0.3s';
+  var padding = _ref11.padding;
+  return padding && "padding: ".concat(padding, ";");
 }, function (_ref12) {
-  var width = _ref12.width;
-  return width;
+  var speed = _ref12.speed;
+  return speed || '0.3s';
 }, function (_ref13) {
-  var zIncrement = _ref13.zIncrement;
-  return zIncrement + 9;
+  var width = _ref13.width;
+  return width;
 }, function (_ref14) {
-  var fromTop = _ref14.fromTop,
-      slideFrom = _ref14.slideFrom,
-      isOpen = _ref14.isOpen;
+  var zIncrement = _ref14.zIncrement;
+  return zIncrement + 9;
+}, function (_ref15) {
+  var fromTop = _ref15.fromTop,
+      slideFrom = _ref15.slideFrom,
+      isOpen = _ref15.isOpen;
   return slideFrom === 'left' ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(-100%)', ";\n          left: 0") : slideFrom === 'right' ? "transform: ".concat(isOpen ? 'translateX(0%)' : 'translateX(100%)', ";\n          right: 0") : slideFrom === 'top' ? "transform: ".concat(isOpen ? 'translateY(0%)' : 'translateY(-100%)', ";\n          top: ").concat(fromTop, "; left: 0; bottom:0;right: 0;") : "transform: ".concat(isOpen ? 'translateY(0%)' : 'translateY(100%)', ";\n      top: ").concat(fromTop, "; left: 0; bottom:0;right: 0;");
 });
 
@@ -183,6 +186,7 @@ var SlideOut = function SlideOut(props) {
 };
 
 SlideOut.defaultProps = {
+  maxWidth: '100%',
   overflowShouldLock: true
 };
 var _default = SlideOut;
