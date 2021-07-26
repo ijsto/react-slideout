@@ -52,6 +52,7 @@ const StyledOverlay = styled.div`
 const StyledSlideOut = styled.div`
   background: ${({ bg }) => bg};
   height: 100vh;
+  max-width: ${({ maxWidth }) => maxWidth};
   ${({ padding }) => padding && `padding: ${padding};`}
   overflow-y: auto;
   position: fixed;
@@ -186,6 +187,7 @@ const SlideOut = props => {
 };
 
 SlideOut.defaultProps = {
+  maxWidth: '100%',
   overflowShouldLock: true,
 };
 
