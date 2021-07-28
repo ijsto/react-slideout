@@ -112,6 +112,7 @@ var SlideOut = function SlideOut(props) {
       closeLabel = props.closeLabel,
       hideClose = props.hideClose,
       isOpen = props.isOpen,
+      maxWidth = props.maxWidth,
       noOverlay = props.noOverlay,
       _props$offsetTop = props.offsetTop,
       offsetTop = _props$offsetTop === void 0 ? '64px' : _props$offsetTop,
@@ -154,6 +155,7 @@ var SlideOut = function SlideOut(props) {
     padding: padding,
     speed: speed,
     width: width,
+    maxWidth: maxWidth,
     zIncrement: zIncrement
   }, !hideClose && closeComponent && /*#__PURE__*/_react["default"].createElement("div", {
     className: "".concat(classNamePrefix ? "".concat(classNamePrefix, "-") : '', "close-component"),
