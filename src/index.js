@@ -87,6 +87,7 @@ const SlideOut = props => {
     closeLabel,
     hideClose,
     isOpen,
+    maxWidth,
     noOverlay,
     offsetTop = '64px',
     onClose,
@@ -130,6 +131,7 @@ const SlideOut = props => {
         padding={padding}
         speed={speed}
         width={width}
+        maxWidth={maxWidth}
         zIncrement={zIncrement}
       >
         {(!hideClose && closeComponent && (
