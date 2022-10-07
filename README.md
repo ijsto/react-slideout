@@ -89,7 +89,7 @@ The following propertiess are available:
 | closeComponent            | React Component or html element                                    | -                     | Custom close button component                                                           |
 | hideClose                 | boolean                                                            | `false`               | Use this to hide close button. You can use parent component to handle state and toggle  |
 | isOpen                    | boolean                                                            | -                     | Controls whether the slideout is visible                                                |
-| max-width                     | [CSS unit](https://www.w3schools.com/cssref/css_units.asp)         | `100%`               | Custom max-width of the the Slideout container. |
+| maxWidth                     | [CSS unit](https://www.w3schools.com/cssref/css_units.asp)         | `100%`               | Custom max-width of the the Slideout container. |
 offsetTop                 | [CSS Unit](https://www.w3schools.com/cssref/css_units.asp)         | `0`                   | Offset slideout from top. Useful to account for the header height.                      |
 | onClose                   | function                                                           | internal state toggle | A function that will close the Slideout                                                 |
 | onCloseComponentKeyDown   | function                                                           | -                     | Accessibility handler                                                                   |
